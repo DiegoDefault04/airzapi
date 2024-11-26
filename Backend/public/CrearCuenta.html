@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="EstilosAIRz.css">
+    <link rel="icon" href="../Assets/LogoZyoniaDos.png">
+    <title>Crear Cuenta</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <img src="../Assets/LogoZyoniaTres.png" alt="Logo AIRz">
+        </div>
+        <div class="language-selector">
+            <label for="language"><img src="../Assets/Idioma.png" class="idioma" alt="Logo AIRz"></label>
+            <select id="language" name="language">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+    </nav>
+
+    <!-- Contenedor de registro -->
+    <div class="login-container">
+        <div class="logo">
+            <h1>AIRz</h1>
+        </div>
+        <div class="title">Crear tu cuenta</div>
+        <div class="subtitle">Completa el formulario</div>
+        <form action="/api/auth/register" method="POST">
+            <div class="input-container">
+                <input type="text" name="name" placeholder="Nombre completo" required>
+            </div>
+            <div class="input-container">
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+            </div>
+            <div class="input-container">
+                <input type="password" name="password" placeholder="Contraseña" required >
+            </div>
+            <div class="input-container">
+                <input type="password" name="confirm_password" placeholder="Confirmar contraseña" required oninput="this.setCustomValidity(this.value !== document.querySelector('[name=password]').value ? 'Las contraseñas no coinciden' : '')">
+            </div>
+            <button type="submit" class="btn">Crear cuenta</button>
+            <div class="success-message" id="successMessage" style="display:none; color:green;">¡Cuenta creada exitosamente!</div>
+            <div class="error-message" id="errorMessage" style="display:none; color:red;"></div>
+        </form>
+        <div class="footer">
+            <a href="LoginAIRz.html">¿Ya tienes cuenta? Inicia sesión</a>
+        </div>
+    </div>
+    <script>
+        document.querySelector('form').addEventListener('submit', (e) => {
+            // Mostrar mensaje solo si se completan los campos correctamente
+            e.preventDefault();
+            document.getElementById('successMessage').style.display = 'block';
+        });
+        document.querySelector('form').addEventListener('submit', (e) => {
+            const password = document.querySelector('[name=password]').value;
+            const confirmPassword = document.querySelector('[name=confirm_password]').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (password !== confirmPassword) {
+            e.preventDefault();
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Las contraseñas no coinciden.';
+            } else {
+            errorMessage.style.display = 'none';
+            }
+        });
+        document.querySelector('form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.querySelector('[name=name]').value;
+            const email = document.querySelector('[name=email]').value;
+            const password = document.querySelector('[name=password]').value;
+            const confirmPassword = document.querySelector('[name=confirm_password]').value;
+
+            if (password !== confirmPassword) {
+                document.getElementById('errorMessage').textContent = 'Las contraseñas no coinciden.';
+                document.getElementById('errorMessage').style.display = 'block';
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, password, confirm_password: confirmPassword }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                document.getElementById('successMessage').style.display = 'block';
+                } else {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').textContent = data.message;
+                }
+            } catch (error) {
+                console.error('Error al crear cuenta:', error);
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').textContent = 'Hubo un error al crear la cuenta.';
+            }
+        });
+
+        </script>
+    <!-- Footer -->
+    <footer>© Zyonia SL 2024</footer>
+</body>
+</html>

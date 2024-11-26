@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="EstilosAIRz.css">
+    <link rel="icon" href="../Assets/LogoZyoniaDos.png">
+    <title>Gestión de Propiedades</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <img src="../Assets/LogoZyoniaTres.png" alt="Logo AIRz">
+        </div>
+        <div class="language-selector">
+            <label for="language"><img src="../Assets/Idioma.png" class="idioma" alt="Logo AIRz"></label>
+            <select id="language" name="language">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+    </nav>
+
+    <!-- Página de Tablas -->
+    <div class="login-container">
+        <h1>Propiedades</h1>
+        <div class="table-actions">
+            <p><button onclick="window.location.href='crear-tabla.html'" class="btn">Crear Nueva Tabla</button></p>
+        </div>
+
+        <div class="existing-tables">
+            <h2>Tablas Existentes</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Preview</th>
+                        <th>Nombre de la Tabla</th>
+                        <th>ID</th>
+                        <th>Acciones</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="" class="preview"></td>
+                        <td>Tabla 1</td>
+                        <td>1111</td>
+                        <td class="edit-btn">
+                            <button onclick="window.location.href='editar-tabla.html?tabla=1'" class="btn">Editar</button>
+                        </td>
+                        <td class="delete-btn">
+                            <button class="btn">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="" class="preview"></td>
+                        <td>Tabla 2</td>
+                        <td>1112</td>
+                        <td class="edit-btn">
+                            <button onclick="window.location.href='editar-tabla.html?tabla=2'" class="btn">Editar</button>
+                        </td>
+                        <td class="delete-btn">
+                            <button class="btn">Eliminar</button>
+                        </td>
+                    </tr>
+                    <!-- Más filas si es necesario -->
+                </tbody>
+            </table>
+            <div class="footer">
+                <a href="LoginAIRz.html">Volver al inicio</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>© Zyonia SL 2024</footer>
+</body>
+</html>
