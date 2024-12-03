@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
 const authRoutes = require('./routes/auth');  // Asegúrate de que esta línea esté al inicio
-
+const datosRoutes = require('./routes/datos');
+const propiedadesRoutes = require('./routes/propiedades');
 // Crear la aplicación
 const app = express();
-
 // Middlewares
 app.use(express.json()); // Reemplaza body-parser
 app.use(cors());
@@ -18,7 +18,8 @@ app.use(express.static('public'));
 
 // Rutas
 app.use('/api/auth', authRoutes);  // Esto solo debe estar aquí una vez
-
+app.use('/api/datos', datosRoutes);
+app.use('/api', propiedadesRoutes);
 // Conexión a la base de datos
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,

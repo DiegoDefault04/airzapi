@@ -1,0 +1,37 @@
+const mongoose = require('mongoose');
+
+const TablaSchema = new mongoose.Schema({
+  ID: String,
+  NombreVivienda: String,
+  TipoVivienda: String,
+  Estado: String,
+  Habitaciones: Number,
+  Baños: Number,
+  Muebles: String,
+  Precio: Number,
+  SuperficieTotal: Number,
+  SuperficieUtil: Number,
+  PrecioPorMetroCuadrado: String,
+  CertificadoEnergetico: String,
+  AñoConstruccion: Number,
+  UbicacionCalle: String,
+  UbicacionPiso: String,
+  CodigoPostal: String,
+  Localidad: String,
+  Provincia: String,
+  Distrito: String,
+  Barrio: String,
+  GastosComunidad: String,
+  Calefaccion: String,
+  Garage: String,
+  Trastero: String,
+  BalconTerraza: String,
+  Piscina: String,
+  Jardin: String,
+  Planta: Number,
+  Ascensor: String,
+  Orientacion: String,
+  NotaAgente: String,
+});
+
+module.exports = mongoose.model('Tabla', TablaSchema, 'datos');

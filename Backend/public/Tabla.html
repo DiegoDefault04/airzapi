@@ -175,7 +175,65 @@
             <a href="GestionTablas.html">Seleccionar tabla</a>
         </div>
     </div>
-
+    <script>
+        document.querySelector('.btn').addEventListener('click', async (event) => {
+          event.preventDefault();
+      
+          const formData = {
+            ID: document.getElementById('id').value,
+            NombreVivienda: document.getElementById('nombre_vivienda').value,
+            TipoVivienda: document.getElementById('tipo_vivienda').value,
+            Estado: document.getElementById('estado').value,
+            Habitaciones: parseInt(document.getElementById('habitaciones').value),
+            Baños: parseInt(document.getElementById('banos').value),
+            Muebles: document.getElementById('muebles').value,
+            Precio: parseFloat(document.getElementById('precio').value),
+            SuperficieTotal: parseFloat(document.getElementById('superficie_total').value),
+            SuperficieUtil: parseFloat(document.getElementById('superficie_util').value),
+            PrecioPorMetroCuadrado: document.getElementById('precio_metro_cuadrado').value,
+            CertificadoEnergetico: document.getElementById('certificado_energetico').value,
+            AñoConstruccion: parseInt(document.getElementById('anio_construccion').value),
+            UbicacionCalle: document.getElementById('ubicacion_calle').value,
+            UbicacionPiso: document.getElementById('ubicacion_piso').value,
+            CodigoPostal: document.getElementById('codigo_postal').value,
+            Localidad: document.getElementById('localidad').value,
+            Provincia: document.getElementById('provincia').value,
+            Distrito: document.getElementById('distrito').value,
+            Barrio: document.getElementById('barrio').value,
+            GastosComunidad: parseFloat(document.getElementById('gastos_comunidad').value),
+            Calefaccion: document.getElementById('calefaccion').value,
+            Garage: document.getElementById('garage').value,
+            Trastero: document.getElementById('trastero').value,
+            BalconTerraza: document.getElementById('balcon_terraza').value,
+            Piscina: document.getElementById('piscina').value,
+            Jardin: document.getElementById('jardin').value,
+            Planta: document.getElementById('planta').value,
+            Ascensor: document.getElementById('ascensor').value,
+            Orientacion: document.getElementById('orientacion').value,
+            NotaAgente: document.getElementById('nota_agente').value
+          };
+      
+          try {
+            const response = await fetch('http://localhost:5000/datos', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(formData),
+            });
+      
+            if (response.ok) {
+              alert('Datos guardados exitosamente');
+            } else {
+              alert('Error al guardar los datos');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            alert('Error al enviar los datos');
+          }
+        });
+      </script>
+      
     <!-- Footer -->
     <footer>© Zyonia SL 2024</footer>
 </body>

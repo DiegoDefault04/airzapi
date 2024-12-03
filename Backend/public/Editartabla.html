@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="EstilosAIRz.css">
+    <link rel="icon" href="../Assets/LogoZyoniaDos.png">
+    <title>Ingresar Datos</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <img src="../Assets/LogoZyoniaTres.png" alt="Logo AIRz">
+        </div>
+        <div class="language-selector">
+            <label for="language"><img src="../Assets/Idioma.png" class="idioma" alt="Logo AIRz"></label>
+            <select id="language" name="language">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+    </nav>
+
+    <!-- Contenedor de la tabla -->
+    <div class="login-container">
+        <div class="logo">
+            <h1>AIRz</h1>
+        </div>
+        <div class="title">Ingresar Datos</div>
+        <div class="subtitle">Rellena la tabla con los datos necesarios</div>
+
+        <!-- Tabla -->
+        <div class="table-container">
+            <table class="data-entry-table">
+                <tr>
+                    <td><label for="id">ID</label></td>
+                    <td><input type="text" id="id" name="id" required></td>
+                </tr>
+                <tr>
+                    <td><label for="nombre_vivienda">Nombre de vivienda</label></td>
+                    <td><input type="text" id="nombre_vivienda" name="nombre_vivienda" required></td>
+                </tr>
+                <tr>
+                    <td><label for="tipo_vivienda">Tipo de vivienda</label></td>
+                    <td><input type="text" id="tipo_vivienda" name="tipo_vivienda" required></td>
+                </tr>
+                <tr>
+                    <td><label for="estado">Estado</label></td>
+                    <td><input type="text" id="estado" name="estado" required></td>
+                </tr>
+                <tr>
+                    <td><label for="habitaciones">Habitaciones</label></td>
+                    <td><input type="number" id="habitaciones" name="habitaciones" required></td>
+                </tr>
+                <tr>
+                    <td><label for="banos">Baños</label></td>
+                    <td><input type="number" id="banos" name="banos" required></td>
+                </tr>
+                <tr>
+                    <td><label for="muebles">Muebles</label></td>
+                    <td><input type="text" id="muebles" name="muebles" required></td>
+                </tr>
+                <tr>
+                    <td><label for="precio">Precio</label></td>
+                    <td><input type="number" id="precio" name="precio" required></td>
+                </tr>
+                <tr>
+                    <td><label for="superficie_total">Superficie total</label></td>
+                    <td><input type="number" id="superficie_total" name="superficie_total" required></td>
+                </tr>
+                <tr>
+                    <td><label for="superficie_util">Superficie útil</label></td>
+                    <td><input type="number" id="superficie_util" name="superficie_util" required></td>
+                </tr>
+                <tr>
+                    <td><label for="precio_metro_cuadrado">Precio por metro cuadrado</label></td>
+                    <td><input type="number" id="precio_metro_cuadrado" name="precio_metro_cuadrado" required></td>
+                </tr>
+                <tr>
+                    <td><label for="certificado_energetico">Certificado energético</label></td>
+                    <td><input type="text" id="certificado_energetico" name="certificado_energetico" required></td>
+                </tr>
+                <tr>
+                    <td><label for="anio_construccion">Año de construcción</label></td>
+                    <td><input type="number" id="anio_construccion" name="anio_construccion" required></td>
+                </tr>
+                <tr>
+                    <td><label for="ubicacion_calle">Ubicación: calle y número</label></td>
+                    <td><input type="text" id="ubicacion_calle" name="ubicacion_calle" required></td>
+                </tr>
+                <tr>
+                    <td><label for="ubicacion_piso">Ubicación: Piso y número, letra o portal</label></td>
+                    <td><input type="text" id="ubicacion_piso" name="ubicacion_piso" required></td>
+                </tr>
+                <tr>
+                    <td><label for="codigo_postal">Código Postal</label></td>
+                    <td><input type="text" id="codigo_postal" name="codigo_postal" required></td>
+                </tr>
+                <tr>
+                    <td><label for="localidad">Localidad</label></td>
+                    <td><input type="text" id="localidad" name="localidad" required></td>
+                </tr>
+                <tr>
+                    <td><label for="provincia">Provincia</label></td>
+                    <td><input type="text" id="provincia" name="provincia" required></td>
+                </tr>
+                <tr>
+                    <td><label for="distrito">Distrito</label></td>
+                    <td><input type="text" id="distrito" name="distrito" required></td>
+                </tr>
+                <tr>
+                    <td><label for="barrio">Barrio</label></td>
+                    <td><input type="text" id="barrio" name="barrio" required></td>
+                </tr>
+                <tr>
+                    <td><label for="gastos_comunidad">Gastos de la comunidad</label></td>
+                    <td><input type="number" id="gastos_comunidad" name="gastos_comunidad" required></td>
+                </tr>
+                <tr>
+                    <td><label for="calefaccion">Calefacción</label></td>
+                    <td><input type="text" id="calefaccion" name="calefaccion" required></td>
+                </tr>
+                <tr>
+                    <td><label for="garage">Garage</label></td>
+                    <td><input type="text" id="garage" name="garage" required></td>
+                </tr>
+                <tr>
+                    <td><label for="trastero">Trastero</label></td>
+                    <td><input type="text" id="trastero" name="trastero" required></td>
+                </tr>
+                <tr>
+                    <td><label for="balcon_terraza">Balcón y terraza</label></td>
+                    <td><input type="text" id="balcon_terraza" name="balcon_terraza" required></td>
+                </tr>
+                <tr>
+                    <td><label for="piscina">Piscina</label></td>
+                    <td><input type="text" id="piscina" name="piscina" required></td>
+                </tr>
+                <tr>
+                    <td><label for="jardin">Jardín</label></td>
+                    <td><input type="text" id="jardin" name="jardin" required></td>
+                </tr>
+                <tr>
+                    <td><label for="planta">Planta</label></td>
+                    <td><input type="text" id="planta" name="planta" required></td>
+                </tr>
+                <tr>
+                    <td><label for="ascensor">Ascensor</label></td>
+                    <td><input type="text" id="ascensor" name="ascensor" required></td>
+                </tr>
+                <tr>
+                    <td><label for="orientacion">Orientación</label></td>
+                    <td><input type="text" id="orientacion" name="orientacion" required></td>
+                </tr>
+                <tr>
+                    <td><label for="nota_agente">Nota del agente</label></td>
+                    <td><textarea maxlength="300" id="nota_agente" name="nota_agente" required></textarea></td>
+                </tr>
+                
+                <tr>
+                    <td><label for="fotografias">Fotografías</label></td>
+                    <td><input type="file" id="fotografias" name="fotografias" accept="image/*" multiple required></td>
+                </tr>
+                <!-- Para futuras actualizaciones
+                <tr>
+                    <td><label for="video">Video</label></td>
+                    <td><input type="file" id="video" name="video" accept="video/*" required></td>
+                </tr>
+                -->
+            </table>
+        </div>
+        <button type="submit" class="btn">Guardar Datos</button>
+        <div class="footer">
+            <a href="GestionTablas.html">Seleccionar tabla</a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id"); // Obtén el ID de la URL
+
+        if (id) {
+            await cargarDatos(id);
+        }
+        });
+
+        async function cargarDatos(id) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/propiedades/${id}`);
+                if (!response.ok) {
+                    throw new Error("Error al obtener los datos");
+                }
+                const datos = await response.json();
+                console.log(datos);  // Verifica los datos en la consola
+                llenarFormulario(datos); // Llama a la función para llenar el formulario
+            } catch (error) {
+                console.error(error);
+                alert("No se pudo cargar la información de la base de datos.");
+            }
+        }
+
+        function llenarFormulario(datos) {
+    // Accede al primer objeto del arreglo
+    const propiedad = datos[0];
+
+        document.getElementById("id").value = propiedad.ID || "";
+        document.getElementById("id").readOnly = true;
+        document.getElementById("nombre_vivienda").value = propiedad.NombreVivienda || "";
+        document.getElementById("tipo_vivienda").value = propiedad.TipoVivienda || "";
+        document.getElementById("estado").value = propiedad.Estado || "";
+        document.getElementById("habitaciones").value = propiedad.Habitaciones || "";
+        document.getElementById("banos").value = propiedad.Baños || "";
+        document.getElementById("muebles").value = propiedad.Muebles || "";
+        document.getElementById("precio").value = propiedad.Precio || "";
+        document.getElementById("superficie_total").value = propiedad.SuperficieTotal || "";
+        document.getElementById("superficie_util").value = propiedad.SuperficieUtil || "";
+        document.getElementById("precio_metro_cuadrado").value = propiedad.PrecioPorMetroCuadrado || "";
+        document.getElementById("certificado_energetico").value = propiedad.CertificadoEnergetico || "";
+        document.getElementById("anio_construccion").value = propiedad.AñoConstruccion || "";
+        document.getElementById("ubicacion_calle").value = propiedad.UbicacionCalle || "";
+        document.getElementById("ubicacion_piso").value = propiedad.UbicacionPiso || "";
+        document.getElementById("codigo_postal").value = propiedad.CodigoPostal || "";
+        document.getElementById("localidad").value = propiedad.Localidad || "";
+        document.getElementById("provincia").value = propiedad.Provincia || "";
+        document.getElementById("distrito").value = propiedad.Distrito || "";
+        document.getElementById("barrio").value = propiedad.Barrio || "";
+        document.getElementById("gastos_comunidad").value = propiedad.GastosComunidad || "";
+        document.getElementById("calefaccion").value = propiedad.Calefaccion || "";
+        document.getElementById("garage").value = propiedad.Garage || "";
+        document.getElementById("trastero").value = propiedad.Trastero || "";
+        document.getElementById("balcon_terraza").value = propiedad.BalconTerrace || "";
+        document.getElementById("piscina").value = propiedad.Piscina || "";
+        document.getElementById("jardin").value = propiedad.Jardin || "";
+        document.getElementById("planta").value = propiedad.Planta || "";
+        document.getElementById("ascensor").value = propiedad.Ascensor || "";
+        document.getElementById("orientacion").value = propiedad.Orientacion || "";
+        document.getElementById("nota_agente").value = propiedad.NotaAgente || "";
+        // Si necesitas llenar el campo de fotos, podrías agregar un preview aquí.
+    }
+
+
+    </script>
+    <!-- Footer -->
+    <footer>© Zyonia SL 2024</footer>
+</body>
+</html>

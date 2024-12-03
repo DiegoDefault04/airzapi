@@ -26,7 +26,8 @@
     <div class="login-container">
         <h1>Propiedades</h1>
         <div class="table-actions">
-            <p><button onclick="window.location.href='crear-tabla.html'" class="btn">Crear Nueva Tabla</button></p>
+            <p><button id="generate-csv-btn" class="btn">Generar CSV</button></p>
+            <p><button onclick="window.location.href='Tabla.html'" class="btn">Crear Nueva Tabla</button></p>
         </div>
 
         <div class="existing-tables">
@@ -47,18 +48,7 @@
                         <td>Tabla 1</td>
                         <td>1111</td>
                         <td class="edit-btn">
-                            <button onclick="window.location.href='editar-tabla.html?tabla=1'" class="btn">Editar</button>
-                        </td>
-                        <td class="delete-btn">
-                            <button class="btn">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="" class="preview"></td>
-                        <td>Tabla 2</td>
-                        <td>1112</td>
-                        <td class="edit-btn">
-                            <button onclick="window.location.href='editar-tabla.html?tabla=2'" class="btn">Editar</button>
+                            <button onclick="window.location.href='EditarTablas.html?id=1'" class="btn">Editar</button>
                         </td>
                         <td class="delete-btn">
                             <button class="btn">Eliminar</button>
@@ -72,6 +62,77 @@
             </div>
         </div>
     </div>
+    <script>
+        async function cargarTablas() {
+            try {
+                const response = await fetch('/api/datos/obtener-tablas');
+                if (!response.ok) throw new Error('Error al obtener las tablas');
+    
+                const tablas = await response.json();
+                const tbody = document.querySelector('.data-table tbody');
+                tbody.innerHTML = ''; // Limpia el contenido existente
+    
+                tablas.forEach(tabla => {
+                    const fila = `
+                        <tr>
+                            <td><img src="" class="preview" alt="Preview"></td>
+                            <td>${tabla.NombreVivienda || 'Sin Nombre'}</td>
+                            <td>${tabla.ID}</td>
+                            <td class="edit-btn">
+                                <button onclick="window.location.href='Editartabla.html?id=${tabla.ID}?tabla=${tabla.ID}'" class="btn">Editar</button>
+                            </td>
+                            <td class="delete-btn">
+                                <button onclick="eliminarTabla('${tabla.ID}')" class="btn">Eliminar</button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.insertAdjacentHTML('beforeend', fila);
+                });
+            } catch (error) {
+                console.error('Error al cargar las tablas:', error);
+            }
+        }
+    
+        async function eliminarTabla(id) {
+            if (confirm('¿Estás seguro de que deseas eliminar esta tabla?')) {
+                try {
+                    const response = await fetch(`/api/datos/eliminar-tabla/${id}`, { method: 'DELETE' });
+                    if (!response.ok) throw new Error('Error al eliminar la tabla');
+                    alert('Tabla eliminada correctamente');
+                    cargarTablas(); // Recargar las tablas
+                } catch (error) {
+                    console.error('Error al eliminar la tabla:', error);
+                    alert('No se pudo eliminar la tabla');
+                }
+            }
+        }
+    
+        // Cargar tablas al cargar la página
+        window.onload = cargarTablas;
+        document.getElementById('generate-csv-btn').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api/datos/generar-csv', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    // Si la respuesta no es OK, lanza un error con el texto de la respuesta.
+                    const errorData = await response.text(); // O usa response.json() si la respuesta es JSON.
+                    throw new Error('Error al generar el archivo CSV: ' + errorData);
+                }
+
+                // Si la respuesta es exitosa, muestra un mensaje de éxito.
+                alert('El archivo CSV ha sido creado correctamente.');
+            } catch (error) {
+                console.error('Error al generar el CSV:', error);
+                alert('Ocurrió un error al generar el archivo CSV.');
+            }
+        });
+
+    </script>
 
     <!-- Footer -->
     <footer>© Zyonia SL 2024</footer>
