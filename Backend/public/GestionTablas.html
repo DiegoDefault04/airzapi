@@ -26,6 +26,13 @@
     <div class="login-container">
         <h1>Propiedades</h1>
         <div class="table-actions">
+            
+            <div id="notification-container" class="notification-icon">
+                <span>🔔</span>
+                <div id="notification-badge" class="badge"></div>
+              </div>
+              <!-- Botones para pruebas -->
+              <button onclick="limpiarCache()">Limpiar caché</button>
             <p><button id="generate-csv-btn" class="btn">Generar CSV</button></p>
             <p><button onclick="window.location.href='Tabla.html'" class="btn">Crear Nueva Tabla</button></p>
         </div>
@@ -58,11 +65,51 @@
                 </tbody>
             </table>
             <div class="footer">
-                <a href="LoginAIRz.html">Volver al inicio</a>
+                <a href="LoginAIRz.html">Cerrar Sesion</a>
             </div>
         </div>
     </div>
     <script>
+        // Recuperar tablas del caché al cargar la página
+        let tablasEnCache = JSON.parse(localStorage.getItem("tablasCacheadas")) || [];
+
+        // Actualiza el badge del ícono según las tablas en el caché
+        function actualizarNotificacion() {
+        const badge = document.getElementById("notification-badge");
+        const cantidad = tablasEnCache.length;
+
+        if (cantidad > 0) {
+            badge.textContent = cantidad;
+            badge.style.display = "flex"; // Mostrar badge si hay tablas
+        } else {
+            badge.style.display = "none"; // Ocultar badge si no hay tablas
+        }
+        }
+
+        // Agregar una nueva tabla al caché
+        function agregarTablaAlCache() {
+        const nuevaTabla = {
+            id: tablasEnCache.length + 1,
+            nombre: `Tabla ${tablasEnCache.length + 1}`,
+            datos: [] // Aquí puedes agregar datos reales
+        };
+
+        tablasEnCache.push(nuevaTabla);
+        localStorage.setItem("tablasCacheadas", JSON.stringify(tablasEnCache));
+        actualizarNotificacion();
+        }
+
+        // Limpiar el caché
+        function limpiarCache() {
+        localStorage.removeItem("tablasCacheadas");
+        tablasEnCache = [];
+        actualizarNotificacion();
+        }
+
+        // Ejecutar al cargar la página
+        actualizarNotificacion();
+
+
         async function cargarTablas() {
             try {
                 const response = await fetch('/api/datos/obtener-tablas');
@@ -131,7 +178,11 @@
                 alert('Ocurrió un error al generar el archivo CSV.');
             }
         });
+    // LocalStorage
+    console.log(localStorage);
 
+    // SessionStorage
+    console.log(sessionStorage);
     </script>
 
     <!-- Footer -->

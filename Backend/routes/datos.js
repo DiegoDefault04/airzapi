@@ -34,16 +34,17 @@ router.get('/obtener-tablas', async (req, res) => {
 
 // Ruta para guardar datos
 router.post('/registrocasa', async (req, res) => {
-  console.log('Ruta alcanzada: /api/datos/registrocasa');
+  console.log('Datos recibidos:', req.body); // Para verificar los datos enviados
   try {
-    const nuevoDato = new Dato(req.body); // Crear un documento con los datos del body
-    const datoGuardado = await nuevoDato.save(); // Guardar en la colección
-    res.status(201).json(datoGuardado); // Responder con el dato guardado
+      const nuevoDato = new Dato(req.body);
+      const datoGuardado = await nuevoDato.save();
+      res.status(201).json(datoGuardado);
   } catch (error) {
-    console.error('Error al guardar datos:', error);
-    res.status(500).json({ error: 'Error al guardar datos' });
+      console.error('Error al guardar datos:', error);
+      res.status(500).json({ error: 'Error al guardar datos' });
   }
 });
+
 
 // Ruta para guardar datos
 router.get('/propiedades/:id', async (req, res) => {

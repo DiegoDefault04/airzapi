@@ -34,10 +34,6 @@
         <div class="table-container">
             <table class="data-entry-table">
                 <tr>
-                    <td><label for="id">ID</label></td>
-                    <td><input type="text" id="id" name="id" required></td>
-                </tr>
-                <tr>
                     <td><label for="nombre_vivienda">Nombre de vivienda</label></td>
                     <td><input type="text" id="nombre_vivienda" name="nombre_vivienda" required></td>
                 </tr>
@@ -170,9 +166,10 @@
                 -->
             </table>
         </div>
+        <div id="notification-container"></div>
         <button type="submit" class="btn">Guardar Datos</button>
         <div class="footer">
-            <a href="GestionTablas.html">Seleccionar tabla</a>
+            <a href="GestionTablas.html">Gestionar Tablas</a>
         </div>
     </div>
     <script>
@@ -180,7 +177,6 @@
           event.preventDefault();
       
           const formData = {
-            ID: document.getElementById('id').value,
             NombreVivienda: document.getElementById('nombre_vivienda').value,
             TipoVivienda: document.getElementById('tipo_vivienda').value,
             Estado: document.getElementById('estado').value,
@@ -214,7 +210,9 @@
           };
       
           try {
-            const response = await fetch('http://localhost:5000/datos', {
+            localStorage.setItem('tablaDatos', JSON.stringify(formData));
+    alert('Datos guardados exitosamente en el caché');
+            const response = await fetch('http://localhost:5000/api/datos/registrocasa', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -232,6 +230,55 @@
             alert('Error al enviar los datos');
           }
         });
+        // Función para mostrar notificaciones
+        function showNotification(message, type = 'success') {
+            const container = document.getElementById('notification-container');
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            
+            if (type === 'error') {
+                notification.style.backgroundColor = '#f44336'; // Rojo para errores
+            }
+
+            notification.textContent = message;
+            container.appendChild(notification);
+
+            // Eliminar notificación después de 5 segundos
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        document.querySelector('.btn').addEventListener('click', async (event) => {
+            event.preventDefault();
+
+            const formData = {
+                // Tu lógica de recolección de datos...
+            };
+
+            try {
+                localStorage.setItem('tablaDatos', JSON.stringify(formData));
+                showNotification('Datos guardados exitosamente en el caché');
+                
+                const response = await fetch('http://localhost:5000/api/datos/registrocasa', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                if (response.ok) {
+                    showNotification('Datos guardados exitosamente');
+                } else {
+                    showNotification('Error al guardar los datos', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Error al enviar los datos', 'error');
+            }
+        });
+
       </script>
       
     <!-- Footer -->
